@@ -4,7 +4,7 @@ function run() {
 	IS_AVAILABLE=0
 	while [ $IS_AVAILABLE -eq 0 ]
 	do
-		IS_AVAILABLE=`curl http://www.motorola.com/us/consumers/nexus-6-header/Nexus-6/nexus-6-motorola-us.html --no-keepalive -s | grep -i -m1 "00637NARTL\":false," | wc -l`
+		IS_AVAILABLE=`curl http://www.motorola.com/us/consumers/nexus-6-header/Nexus-6/nexus-6-motorola-us.html --no-keepalive -s | grep -i -m1 "00637NARTL\":{[^}]\\+availability\":\"IN_STOCK" | wc -l`
 		if [ $IS_AVAILABLE -gt 0 ]; then
 			echo "64GB CW AVAILABLE!"
 			osascript -e 'display notification "MAKE IT HAPPEN - AVAILABLE" with title "NEXUS"'
